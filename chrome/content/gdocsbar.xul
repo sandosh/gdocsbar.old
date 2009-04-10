@@ -1,0 +1,271 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet href="chrome://global/skin/" type"text/css" ?>
+<?xml-stylesheet href="chrome://browser/skin/browser.css" type="text/css" ?>
+<?xml-stylesheet href="chrome://gdocsbar/skin/css/gdocsbar.css" type="text/css" ?>
+<!DOCTYPE page SYSTEM "chrome://gdocsbar/locale/gdocsbar.dtd">
+<window title="&gdocsbar.title;"
+	xmlns:html="http://www.w3.org/1999/xhtml"
+	xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul" 
+	windowtype="SideBar" 
+	persist="screenX screenY width height sizemode"
+    screenX="10" screenY="10"
+	id="sbGdocsbar" width="250">
+	<script src="chrome://global/content/nsDragAndDrop.js" type="application/x-javascript"/>
+	<script src="chrome://global/content/nsTransferable.js" type="application/x-javascript"/>
+	
+	<script src="js/ObjTree.js" type="application/x-javascript"/>
+	<script src="js/jstemplatebuilder.js" type="application/x-javascript"/>
+	<script src="js/behaviour.js" type="application/x-javascript"/>
+	<script src="js/cookiemonster.js" type="application/x-javascript"/>
+	<script src="js/date.format.js" type="application/x-javascript"/>
+	
+<!-- YUI //-->
+	<script src="js/YUI/yahoo-min.js" type="application/x-javascript"/>
+	<script src="js/YUI/event-min.js" type="application/x-javascript"/>
+	<script src="js/YUI/connection.js" type="application/x-javascript"/>
+<!-- ///////////////// -->
+	<script src="js/gdocsbar.js" type="application/x-javascript"/>
+	<script src="js/init.js" type="application/x-javascript"/>
+	
+	<page id="searchPage" flex="150" style=" background-color: #000;" collapsed="true" force="true">
+		<vbox id="page" flex="10" style=" overflow: auto; background-color: #fff; min-width:200px;">
+			<box id="userBox">
+				<box flex="1" style="overflow-x:hidden;">
+					<label value="" style="max-width:140px;" crop="end" id="_user_email"/>
+				</box>
+				<box pack="end" flex="2">
+					<label style="text-decoration:underline; cursor:pointer;" onclick="gdocsbarObj.logout();" value="&gdocsbar.logout;"/>
+				</box>
+			</box>
+			<vbox>
+				<hbox id="folderBox">
+				<box flex="10" pack="start" align="center" style="padding:0px; max-height:20px;  border-bottom:0px solid #ccc;">
+					<toolbarbutton type="menu" id="folders_menu" label="All Items" accesskey="F">
+						<menupopup id="folders_menupop" ignorekeys="false">
+							
+						</menupopup>
+					</toolbarbutton>
+				</box>
+				<box>
+					<toolbarbutton type="menu" id="new_menu" label="Actions" accesskey="N">
+						<menupopup id="new_menu_menupop" ignorekeys="false">
+							<menuitem label="Go to Google Docs Home" oncommand="gdocsbarObj.openGoogleDocsHome(event);"/>
+							<menuseparator/>
+							<menuitem label="New" disabled="true"/>
+							<menuitem label="	Document" oncommand="gdocsbarObj.executeUploadTemplate('document.doc',true)"/>
+							<menuitem label="	Presentation" oncommand="gdocsbarObj.executeUploadTemplate('presentation.ppt',true)"/>
+							<menuitem label="	Spreadsheet" oncommand="gdocsbarObj.executeUploadTemplate('spreadsheet.xls',true)"/>
+							<menu label="	From Templates">
+								<menupopup id="templates_menupop">
+									<menuitem label="Manage Temples"/>
+									<menuseparator/>
+									<menuitem label="Resume"/>
+								</menupopup>
+							</menu>
+							<menuseparator/>
+							<menuitem label="Manage" disabled="true"/>
+							<menuitem label="	Templates" oncommand="gdocsbarObj.openTemplatesView();"/>
+							<menuitem label="	Smart Folders" oncommand="gdocsbarObj.openSmartFoldersView();"/>
+							<menuseparator/>
+							<menuitem id="menu_preferences" label="Preferences"
+							                oncommand="window.openDialog('options.xul', '_new', 'chrome');"/>
+						</menupopup>
+					</toolbarbutton>
+				</box>
+				</hbox>
+				<hbox align="start" pack="start" id="searchOptions">
+					<box flex="1" class="on" pack="center" align="center" id="_filter" onclick="gdocsbarObj.toggleSearch(this);">
+						<label value="&gdocsbar.filterlabel;" class="on"/>
+					</box>
+					<box flex="1" pack="center" align="center" id="_content" onclick="gdocsbarObj.toggleSearch(this);" class="off">
+						<label value="&gdocsbar.searchlabel;" class="off"/>
+					</box>
+				</hbox>
+				<vbox align="center" pack="center" id="searchBox">
+					<box align="center" pack="center">
+						<label value=""/>
+					</box>
+					<hbox align="center" pack="center">
+						<label value="" id="searchLabel" onclick="document.getElementById('searchInput').focus();"/>
+						<textbox id="searchInput" value="" type="timed" timeout="100" oncommand="gdocsbarObj.filterDocs();" onfocus="gdocsbarObj.focusSearchField(this);" onblur="gdocsbarObj.blurSearchField(this);" oninput="gdocsbarObj.toggleSearchCancel(this);" class="grey"/>
+						<label value="" id="searchLabelEnd" onclick="gdocsbarObj.clearSearchfield();"/>
+					</hbox>
+				</vbox>
+				<vbox align="center" pack="center" id="contentSearchBox" style="display:none;">
+					<box align="center" pack="center">
+						<label value="name, author or content" style="color:#666;"/>
+					</box>
+					<hbox align="center" pack="center">
+						<label value="" id="cSearchLabel"/>
+						<textbox id="cSearchInput" value="" class="grey"/>
+						<label tabindex="1" value="search" id="searchButton" onclick="gdocsbarObj.searchDocs();"/>
+					</hbox>
+				</vbox>
+				<hbox style="padding:5px;">
+				</hbox>
+			</vbox>
+			
+			<box align="start" pack="center" id="menu">
+				<label value="&gdocsbar.alltypeslabel;" class="selected" id="_a"/>
+				<label value="" class="notSelected" id="_d"/>
+				<label value="" class="notSelected" id="_s"/>
+				<label value="" class="notSelected" id="_p"/>
+			</box>
+			<hbox id="controlsBox">
+				<vbox id="starBox">
+					<image src="chrome://gdocsbar/skin/images/star.png" id="starB" class="off" height="16" width="16"/>
+				</vbox>
+				<box align="center" pack="end" id="sortBox" flex="10">
+					<label id="_title" value="&gdocsbar.sorttitle;" class="off"/>
+					<label value="&gdocsbar.date;" id="_date" class="on"/>
+					<label value="&gdocsbar.author;" id="_author" class="off"/>
+				</box>
+				<box align="start" pack="center" id="orderBox">
+					<label id="_asc" value="&#x394;" class="off"/>
+					<label value="&#x2207;" id="_desc" class="on"/>
+				</box>
+			</hbox>
+			<box id="infoBox" flex="10" pack="center" align="center" style="padding:3px; max-height:25px;  border-bottom:1px solid #ccc;">
+				<label value="Loading..." id="sInfoTxt"/>
+				<label value="" style="font-weight:bold; cursor:pointer; text-decoration:underline;" onclick="gdocsbarObj.getFeed();" id="refresh_txt"/>
+				<label value="" style="font-weight:bold; cursor:pointer; text-decoration:underline;" onclick="gdocsbarObj.clearSearchfield();" id="clear_txt"/>
+			</box>
+			<box pack="center" align="center" style="background-color:#fff; display:none;" flex="100" id="_loading_2">
+				<image src="chrome://gdocsbar/skin/images/whiteload.gif"/>
+			</box>
+		
+
+			<vbox id="searchResultsBox" flex="100">
+		
+		
+			</vbox>
+			<vbox id="uploadDrop" ondragdrop="nsDragAndDrop.drop(event, fup_panelDropObserver)" ondragover="nsDragAndDrop.dragOver(event,fup_panelDropObserver)" ondragexit="nsDragAndDrop.dragExit(event,fup_panelDropObserver)" ondragenter="nsDragAndDrop.dragEnter(event,fup_panelDropObserver)">
+				<hbox style="height:20px;" id="uploadHolder" flex="10">
+					<box id="uploadTabs" pack="start" flex="10" style="background-color:#efefef; border-top:1px solid #ccc;">
+						<label id="_uploadNow" value="Upload" class="selected" style="display:none;"/>
+						<label id="_uploadQ" value="&gdocsbar.upload;" class="selected"/>
+						<label id="_uploadDone" value="&gdocsbar.completed;" class="notSelected"/>
+					</box>
+					<box pack="start" align="center" style="padding:0; margin:0; background-color:#efefef;border-top:1px solid #ccc; cursor:pointer;" onclick="gdocsbarObj.callUploadMenuItem(document.getElementById('_uploadDone'));" flex="12">
+						<image src="chrome://gdocsbar/skin/images/error2.png" style="padding:0 0 0 2px; margin:0px;" id="error_img"/><label value="" id="error_text" style="display:;"/>
+					</box><box pack="end" align="center" style="padding:0; margin:0; background-color:#efefef;border-top:1px solid #ccc; cursor:pointer;" flex="12"><image src="chrome://gdocsbar/skin/images/expand.png" style="display:none;padding:0 0 0 0px; margin:0px; height:16px;" id="upload_expand" tooltiptext="Expand upload drop box" onclick="gdocsbarObj.expandUploadBox();"/><image src="chrome://gdocsbar/skin/images/contract.png" style="padding:0 0 0 0px; margin:0px; height:16px;" id="upload_contract" onclick="gdocsbarObj.contractUploadBox();"/></box>
+				</hbox>
+				<vbox id="_Qholder" style="height:100px; overflow-x:hidden;" ondragdrop="nsDragAndDrop.drop(event, fup_panelDropObserver)" ondragover="nsDragAndDrop.dragOver(event,fup_panelDropObserver)" ondragexit="nsDragAndDrop.dragExit(event,fup_panelDropObserver)" ondragenter="nsDragAndDrop.dragEnter(event,fup_panelDropObserver)">
+					<label value="" id="upload_txt" style="display:none;"/>
+					<vbox id="QTab" style="display:;" flex="10">
+					</vbox>
+					<vbox id="uploadTab" flex="10" style="display:none;">
+						<label value="Drag and Drop files to upload." style="font-weight:; font-size:13px;"/>
+						<progressmeter id="uploadProgress" mode="determined" value="50" style="display:none;"/>
+					</vbox>
+					<vbox id="finishedTab" style="display:none;" flex="10">
+		
+					</vbox>
+				</vbox>
+			</vbox>
+		</vbox>
+		<popupset>
+			<menupopup id="docsmenu">
+				<menuitem label="Open Document in New Window" oncommand="gdocsbarObj.opnLinkNewWindow(document.popupNode.parentNode.id);"/>
+        <menuitem label="Open Document in New Tab" oncommand="gdocsbarObj.openLinkNewTab(document.popupNode.parentNode.id);"/>
+          <menuitem label="Download as pdf" oncommand="gdocsbarObj.downLink(document.popupNode.parentNode.id,'pdf');"/>
+          <menuitem label="Downlod as doc" oncommand="gdocsbarObj.downLink(document.popupNode.getAttribute('id'),'doc');"/>
+				<menuseparator/>
+				<menuitem label="Copy Link" oncommand="gdocsbarObj.copyLink(document.popupNode.id);"/>
+				<menuseparator/>
+				<menuitem label="Filter by " oncommand="gdocsbarObj.createNewFilter(this);" id="context_author"/>
+			</menupopup>
+		</popupset>
+	</page>
+	<page id="loginPage" flex="1" collapsed="false">
+		<vbox align="center" pack="center" id="page2" flex="10" style="overflow: auto; background-color: #fff; ">
+			<label value="Sign in with your" style="margin-bottom:5px; color:#666; font-weight:normal;"/>
+			<label value="Google Account" style="margin-bottom:5px; color:#666; font-weight:bold;"/>
+			<description style="display:none;padding:5px 5px; margin:10px; color:red;background-color: rgb(255, 255, 160);font-weight:bolder;" align="center" pack="center" id="error_txt"/>
+			<label value="Click here to unlock." onclick="gdocsbarObj.openCaptcha();" style="display:none; cursor:pointer; margin-bottom:10px; text-decoration:underline; color:blue;" id="captcha_link"/>
+			<vbox id="loginboxTop">
+				<label value="email:"/>
+				<textbox id="username" onkeyup="console.log('keyup')" typed="timed"/>
+			</vbox>
+			<vbox id="loginboxBot">
+				<vbox>
+					<label value="password:"/>
+					<textbox id="password" type="password"/>
+				</vbox>
+				<box>
+					<checkbox label="remember me" checked="true" style="width:100px;-moz-user-focus:normal !important;" id="remember_me" tabindex="1"/>
+				</box>
+				<box>
+					<button label="login" oncommand="gdocsbarObj.login();"/>
+					<image src="chrome://gdocsbar/skin/images/blueload.gif" style="display:none; padding:10px; margin-left:10px;" id="_loading_1"/>
+				</box>
+				<box>
+					<label value="Options"
+					                onclick="window.openDialog('options.xul', '_new', 'chrome');" style="text-decoration:underline; color:blue;"/>
+				</box>
+			</vbox>
+		</vbox>
+	</page>
+	<page id="morepage" flex="150" collapsed="true" style=" background-color: #000;">
+		<vbox align="start" pack="start" id="page3" style="overflow: auto; background-color:#FFF; min-width:200px;">
+			<box>
+				<label value="Back" id="backPage" onclick="gdocsbarObj.backPage();"/>
+			</box>
+		</vbox>
+			<box id="optionstabs" align="center" pack="center">
+				<!--><label value="options" class="selected" id="o_o" /> -->
+				<label value="templates" class="notSelected" id="o_t" />
+				<label value="smartfolders" class="notSelected" id="o_s" />
+			</box>
+		<vbox class="optionsactions" id="actions_t" style="display:none;">
+			<box>
+				<label value="+ Add" class='optionsactionsbutton' onclick="gdocsbarObj.openChooseTemplateFileDialog();"/>
+			</box>
+			<vbox id="tamplatelist" flex="100">
+				
+			</vbox>
+		</vbox>
+		<vbox class="optionsactions" id="actions_s" style="display:none;">
+			<box>
+				<label value="+ New" class='optionsactionsbutton' onclick="gdocsbarObj.openNewSmartFolder();"/>
+			</box>
+			<vbox id="newST" style="background-color: rgb(255, 242, 152); display:none;">
+			<vbox class="smartfolderedit">
+			<label value="Smart folder name:"/>
+			<textbox value="" id="sf_new_name"/>
+			<label value="Filter:"/>
+			<textbox value="" id="sf_new_filter"/>
+			<label value="Search term:"/>
+			<textbox value="" id="sf_new_search"/>
+			<hbox>
+			<label class="s_button" value="save" onclick="gdocsbarObj.saveNewSmartFolder();"/>
+			<label class="s_button" value="cancel" onclick="gdocsbarObj.closeNewSmartFolder();"/>
+			</hbox>
+			</vbox>
+			</vbox>
+			<vbox id="smartfolderlist" flex="100">
+				
+			</vbox>
+		</vbox>
+		<vbox flex="100" id="optionscontent">
+			
+		</vbox>
+	</page>
+	<script>
+		<![CDATA[
+		YAHOO.util.Event.onDOMReady(init);
+		YAHOO.util.Event.addListener(window, "unload", gdocsbar.onSidebarUnload); 
+		/*window.addEventListener('DOMContentLoaded', function (e) {
+			// this will get called multiple times, whenever a document loads
+			MeeboExtension.onload();
+			MeeboExtension.onSidebarLoad();
+		}, false);
+		
+		window.addEventListener('unload', function () {
+			MeeboExtension.onSidebarUnload();
+		}, false);*/
+		
+		
+		]]>
+	</script>
+</window>

@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet href="chrome://global/skin/" type="text/css"?>
+<!DOCTYPE prefwindow SYSTEM "chrome://gdocsbar/locale/prefwindow.dtd">
+<prefwindow id="gdocsbarPreferences" xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul" title="&prefwindow.title;">
+  <prefpane id="pane1" label="&pane1.title;">
+    <preferences>
+      <preference id="auto-singon" name="extensions.gdocsbar.autosignon" type="bool"/>
+      <preference id="auto-open" name="extensions.gdocsbar.autoopen" type="bool"/>
+      <preference id="first-run" name="extensions.gdocsbar.firstrun" type="bool"/> 
+		<preference id="version" name="extensions.gdocsbar.version" type="string"/> 
+		<preference id="clipboardExtension" name="extensions.gdocsbar.clipboardExtension" type="string"/> 
+		<preference id="alwaysOpenTab" name="extensions.gdocsbar.alwaysOpenTab" type="bool"/>
+		<preference id="checkOpenTabs" name="extensions.gdocsbar.checkOpenTabs" type="bool"/>
+    </preferences>
+	<groupbox>
+	  	<caption label="Startup options"/>    
+		<checkbox id="checkboolpref" preference="auto-open" label="Open sidebar when Firefox starts" accesskey="&checkboolpref.accesskey;"/>
+	</groupbox>
+	<groupbox>
+		<label value="Save web content with extension:"/>
+		<textbox id="clippref" preference="clipboardExtension" maxlength="4" size="4"/>
+	</groupbox>
+	<groupbox>
+		<caption label="Link Options"/>
+		<checkbox id="checkOpenTabsPref" preference="checkOpenTabs" label="Always  check for open docs"/>
+		<checkbox id="alwaysOpenTabPref" preference="alwaysOpenTab" label="Always  open in new tab"/>
+	</groupbox>
+	<button label="save" oncommand="window.close();" style="width:50px;"/>
+  </prefpane>
+</prefwindow>

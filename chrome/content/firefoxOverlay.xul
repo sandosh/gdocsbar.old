@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet href="chrome://gdocsbar/skin/overlay.css" type="text/css"?>
+<?xml-stylesheet href="chrome://gdocsbar/skin/toolbar-button.css" type="text/css"?>
+<!DOCTYPE overlay SYSTEM "chrome://gdocsbar/locale/gdocsbar.dtd">
+<overlay id="gdocsbar-overlay"
+         xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul">
+  <script src="overlay.js"/>
+	<script type="application/x-javascript" src="js/gdocsbar.js"/>
+  <menupopup id="viewSidebarMenu">
+    <menuitem key="key_openGdocsbar" observes="viewGdocsbar"  />
+  </menupopup>
+  
+  <keyset id="mainKeyset">
+    <key id="key_openGdocsbar" command="viewGdocsbar"
+         key="&openGdocsbar.commandkey;" 
+         modifiers="&openGdocsbar.modifierskey;" />
+  </keyset>
+  <toolbarpalette id="BrowserToolbarPalette">
+  <toolbarbutton id="gdocsbar-button" class="toolbarbutton-1"
+    label="Google Docs Bar" tooltiptext="Google Docs Bar"
+    oncommand="gdocsbar.toggleSidebar();"/>
+</toolbarpalette>
+  <broadcasterset id="mainBroadcasterSet"> 
+    <broadcaster id="viewGdocsbar" 
+                 label="&gdocsbar.title;"
+                 autoCheck="false"
+                 type="checkbox"
+                 group="sidebar"
+                 sidebarurl="chrome://gdocsbar/content/gdocsbar.xul"
+                 sidebartitle="&gdocsbar.title;"
+                 oncommand="gdocsbar.toggleSidebar();" />
+  </broadcasterset>
+<commandset id="mainCommandSet">
+	<command id="openSidebar"
+		label="Open gDocs sidebar"
+		oncommand="gdocsbar.showSidebar();"/>
+	<command id="toggleSidebar"
+		label="toggle gDocs sidebar"
+		oncommand="gdocsbar.toggleSidebar();"/>
+</commandset>
+
+<script type="application/x-javascript">
+	window.addEventListener('load',gdocsbar.myinit, false);
+</script>
+
+
+</overlay>

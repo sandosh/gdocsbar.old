@@ -1,0 +1,5 @@
+content	gdocsbar	jar:chrome/gdocsbar.jar!/content/
+locale	gdocsbar	en-US	jar:chrome/gdocsbar.jar!/locale/en-US/
+skin	gdocsbar	classic/1.0	jar:chrome/gdocsbar.jar!/skin/
+overlay	chrome://browser/content/browser.xul	chrome://gdocsbar/content/firefoxOverlay.xul
+style	chrome://global/content/customizeToolbar.xul	chrome://gdocsbar/skin/overlay.css

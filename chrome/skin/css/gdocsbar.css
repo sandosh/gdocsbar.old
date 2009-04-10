@@ -1,0 +1,664 @@
+window{
+	max-width:75%  !important;
+	min-width:200px !important;
+	width:250px !important;
+}
+#menu, #uploadTabs, #uploadT2, #uploadHolder{
+	background-color:#fff;
+	/*background-image: url('chrome://gdocsbar/skin/images/menu-bg-1.gif');*/
+	padding:0;
+	margin:0;
+}
+
+#uploadTabs, #uploadT2{
+	height:30px;
+}
+#menu label{
+	font-size:11px;
+	margin:5px 2px 0 0;
+	padding-top:5px; padding-bottom:5px;
+	-moz-border-radius-topleft:5px;
+	-moz-border-radius-topright:5px;
+}
+#uploadTabs label{
+	font-size:11px;
+	margin:5px 0 0 0;
+	padding: 5px 5px 5px 5px;
+	-moz-border-radius-topleft:5px;
+	-moz-border-radius-topright:5px;
+}
+#optionstabs label{
+	font-size:10px;
+	margin:5px 1px 0 0;
+	padding: 5px 5px 5px 5px;
+	
+	-moz-border-radius-topleft:5px;
+	-moz-border-radius-topright:5px;
+}
+#menu label.notSelected, #uploadTabs label.notSelected{
+	cursor:pointer;
+	font-weight:bold;
+	color:#666;
+	background-color:#E0EDFE;
+	border-right:1px solid #ccc;
+	
+}
+#optionstabs label.notSelected{
+	cursor:pointer;
+	font-weight:bold;
+	color:#666;
+	background-color:#E0EDFE;
+	border-right:1px solid #ccc;
+	
+}
+#menu label.selected, #uploadTabs label.selected{
+	background-color:#93C2F1;
+	font-weight:bold;
+	
+	text-transform: capitalize;
+	color:#000;
+}
+
+#optionstabs label.selected{
+	background-color:#93C2F1;
+	font-weight:bold;
+	
+	text-transform: capitalize;
+	color:#000;
+}
+
+#optionstabs{
+	background-color:#FFF;
+	border-bottom:1px solid #93C2F1;
+	padding:0;
+	margin:0;
+}
+#optionscontent{
+	background-color:#FFF;
+}
+
+.optionsactions{
+	background-color:#93C2F1;
+	padding:10px 0px 1px 0px;
+	overflow-y:auto;
+}
+
+.optionsactionsbutton, .s_edit, .s_button{
+		background-image:url('chrome://gdocsbar/skin/images/statusbg.png');
+		padding:3px 5px;
+		font-size:10px; font-weight:bold;
+		border-bottom:1px solid #ccc;
+		border-right:1px solid #ccc;
+		border-top:0px solid #ccc;
+		border-left:0px solid #ccc;
+		margin-bottom:5px;
+}
+.optionsactionsbutton:active, .s_edit:active, .s_button:active{
+	border-top:1px solid #ccc;
+	border-left:1px solid #ccc;
+	border-bottom:0px solid #ccc;
+	border-right:0px solid #ccc;
+}
+
+#tamplatelist, #smartfolderlist{
+	background-color: #FFF;
+	margin:0;
+	overflow-x:hidden;
+	overflow-y:auto;
+}
+#tamplatelist box, #smartfolderlist box{
+	padding:5px 0;
+	border-bottom:1px solid #efefef;
+}
+#tamplatelist box:hover, #smartfolderlist box.notselected:hover{
+	background-color:#efefef;
+}
+#tamplatelist box:active{
+	background-color:red;
+	color:#fff;
+}
+
+#tamplatelist box label.t_delete{
+	background-image:url('chrome://gdocsbar/skin/images/close.png');
+	height:17px;
+	padding:0 10px;
+	cursor:pointer;
+	margin:0;
+}
+
+#smartfolderlist box label.s_delete{
+	background-image:url('chrome://gdocsbar/skin/images/close.png');
+	background-repeat:no-repeat;
+	background-position: center center;
+	height:14px;
+	padding:0 10px;
+	cursor:pointer;
+	margin:0;
+}
+
+#smartfolderlist box.notselected:active, #smartfolderlist box.selected{
+	background-color:#FFF298;
+}
+#smartfolderlist box.selected label.s_name{
+	font-weight:bold;
+}
+#tamplatelist box label.t_name{
+	height:17px;
+	line-height:2em;
+	width:160px;
+	margin-top:2px;
+}
+#smartfolderlist textbox{
+	margin-bottom:10px;
+}
+#smartfolderlist box label.s_name{
+	height:17px;
+	line-height:2em;
+	width:160px;
+	margin:4px 0 0 10px;
+}
+.smartfolderedit{
+	padding:10px;
+}
+#_a{
+	padding:5px;
+}
+#_d, #_s, #_p,#_pdf{
+	padding:5px 5px 5px 20px;
+}
+#_d{
+	
+	background: url(chrome://gdocsbar/skin/images/document_FALSE.gif) no-repeat 2px center;
+	min-width:30px;
+}
+#_pdf{
+	
+	background: url(chrome://gdocsbar/skin/images/pdf_FALSE.gif) no-repeat 2px center;
+	min-width:30px;
+}
+#_s{
+	
+	background: url(chrome://gdocsbar/skin/images/spreadsheet_FALSE.gif) no-repeat 2px center;
+	min-width:30px;
+}
+#_p{
+	
+	background: url(chrome://gdocsbar/skin/images/presentation_FALSE.gif) no-repeat 2px center;
+	min-width:30px;
+}
+#_Qholder{
+	background:#93C2F1 url('chrome://gdocsbar/skin/images/upload.png') no-repeat bottom right;
+}
+#searchInput, #cSearchInput{
+	background-position         : left !important;
+	    -moz-appearance             : none !important;
+	    border                      : 0px solid !important;
+	    margin                      : 0px !important;
+	    padding                     : 4px 0px 0px 3px !important;
+	    height                      : 22px !important;
+	background-image            : url(chrome://gdocsbar/skin/images/barmid.png) !important;
+	
+}
+#cSearchInput{
+	width:111px;
+}
+#searchButton:active{
+		background-image            : url(chrome://gdocsbar/skin/images/black-button-hover.png) !important;
+}
+#searchButton{
+		background-image            : url(chrome://gdocsbar/skin/images/black-button.png) !important;
+		background-position:center right;
+		width:55px; height:22px;
+		text-align:center;
+		margin:0px; padding:3px 0 0 0px;
+		position:absolute;
+		left:-10px;
+		border-left:1px solid #999;
+		cursor:pointer;
+		color:#fff;
+		font-weight:bold;
+		-moz-user-focus: normal;
+}
+#loginboxTop label,  #loginboxBot label{
+	width:50px;
+}
+#loginboxTop{
+	-moz-border-radius-topleft:5px;
+	-moz-border-radius-topright:5px;
+	padding:10px 5px 5px 5px;
+	background-color:#e8eefa;
+	width:180px;
+}
+#loginboxBot{
+	-moz-border-radius-bottomleft:5px;
+	-moz-border-radius-bottomright:5px;
+	padding:5px;
+	background-color:#e8eefa;
+	width:180px;
+}
+
+.plainTextBox{
+	background-position         : left !important;
+	    -moz-appearance             : none !important;
+	    border                      : 0px solid !important;
+	    margin                      : 0px !important;
+	    padding                     : 4px 0px 0px 3px !important;
+	    height                      : 22px !important;
+	background: transparent;
+	
+}
+
+#searchInput.grey{
+	color:#cccccc;
+}
+#searchInput.normal{
+	color:#000;
+}
+#searchLabel, #cSearchLabel{
+	margin:0;
+	padding:0;
+	background-position         : top left !important;
+	height:22px; width:18px;
+	background-image            : url(chrome://gdocsbar/skin/images/bar.png) !important;
+}
+#searchLabelEnd{
+	margin:0;
+	padding:0;
+	background-position         : top right !important;
+	height:22px; width:18px;
+	background-image            : url(chrome://gdocsbar/skin/images/bar.png) !important;
+}
+#searchLabelEnd.close{
+	background-position         : bottom right !important;
+}
+#searchBox, #contentSearchBox{
+	padding:0 0 0px 0px;
+}
+
+
+#searchResultsBox{
+	background-color:#fff;
+/*	border-top:1px solid #efefef; */
+	overflow-x:hidden;
+	overflow-y:auto;
+}
+#searchResultsBox description image{
+	position:relative;
+	top:10px;
+	left:-25px;
+	display:inline-block;
+}
+#searchResultsBox vbox.document_FALSE:hover, #searchResultsBox vbox.pdf_FALSE:hover, #searchResultsBox vbox.presentation_FALSE:hover, #searchResultsBox vbox.spreadsheet_FALSE:hover, #searchResultsBox vbox.document_TRUE:hover, #searchResultsBox vbox.presentation_TRUE:hover, #searchResultsBox vbox.spreadsheet_TRUE:hover{
+	background-color:#DEEBFF;
+}
+#searchResultsBox vbox.document_FALSE:active, #searchResultsBox vbox.pdf_FALSE:hover, #searchResultsBox vbox.presentation_FALSE:active, #searchResultsBox vbox.spreadsheet_FALSE:active, #searchResultsBox vbox.document_TRUE:active, #searchResultsBox vbox.presentation_TRUE:active, #searchResultsBox vbox.spreadsheet_TRUE:active{
+	background-color:#FFF298;
+}
+#searchResultsBox vbox{
+	padding:5px 5px 5px 30px;
+	border-bottom:1px solid #ddd;
+}
+#searchResultsBox vbox label.title{
+	color:#000;
+	font-weight: normal;
+	font-style: normal;
+	font-size:100%;
+	padding:0;
+	margin:0;
+	margin:0 0 2px 0;
+}
+#searchResultsBox vbox label.updated{
+	color:#999;
+	font-weight: normal;
+	font-style: normal;
+	font-size:11px;
+	padding:0;
+	margin:2px 0 0 0;
+}
+/*#searchResultsBox description{
+	padding:0px 5px 5px 30px;
+	white-space:;
+	border-bottom:1px solid #ddd;
+	cursor:pointer;
+	margin:0;
+	color:#ccc;
+	/*display:-moz-box ;
+	height:40px;
+	line-height:1.5em;
+	font-size:95%;
+	overflow-x:hidden;
+}*/	
+#searchResultsBox description{
+	margin:5px 0;
+}
+#searchResultsBox description.folders{
+	border-bottom:0px solid #ddd;
+	display:block;
+	white-space:normal;
+	padding:0; margin:0;
+	height:15px;
+}
+#searchResultsBox vbox.active{
+	
+}
+#searchResultsBox vbox.document_FALSE{
+	background: url('chrome://gdocsbar/skin/images/document_FALSE.gif') no-repeat 6px 8px;
+	
+}
+#searchResultsBox vbox.pdf_FALSE{
+	background: url('chrome://gdocsbar/skin/images/pdf_FALSE.gif') no-repeat 6px 8px;
+	
+}
+#searchResultsBox vbox.presentation_FALSE{
+	background: url('chrome://gdocsbar/skin/images/presentation_FALSE.gif') no-repeat 6px 8px;
+}
+#searchResultsBox vbox.spreadsheet_FALSE{
+	background: url('chrome://gdocsbar/skin/images/spreadsheet_FALSE.gif') no-repeat 6px 8px;
+}
+#searchResultsBox vbox.document_TRUE{
+	background: url('chrome://gdocsbar/skin/images/document_TRUE.gif') no-repeat 2px 8px;
+}
+#searchResultsBox vbox.presentation_TRUE{
+	background: url('chrome://gdocsbar/skin/images/presentation_TRUE.gif') no-repeat 2px 8px;
+}
+#searchResultsBox vbox.spreadsheet_TRUE{
+	background: url('chrome://gdocsbar/skin/images/spreadsheet_TRUE.gif') no-repeat 2px 8px;
+}
+#searchResultsBox description label.text{
+	color:#000;
+	font-weight: normal;
+	font-style: normal;
+	font-size:11px;
+	position:relative;
+	left:-0px;
+	margin:3px 0 0 0;
+	padding:0;
+	cursor:pointer;
+	display:block;
+	
+}
+#searchResultsBox description label.folder{
+	background-color:#FFF298;
+	padding:0 3px;
+	margin:0 5px 0 0;
+	font-size:9px;
+	-moz-border-radius:3px;
+	cursor:normal;
+	color:#000;
+	display:inline;
+	color:#333;
+	border-right:1px solid #ccc;
+	border-bottom:1px solid #ccc;
+	
+}
+#folders_menu{
+background: url('chrome://gdocsbar/skin/images/folder_home.png') no-repeat center left;
+padding-left:15px;
+font-weight:bold;
+font-size:12px;
+}
+#searchResultsBox description i{
+	color:#ccc;
+	font-weight: normal;
+	font-style: normal;
+}
+#searchResultsBox description i strong{
+	color:#ccc;
+	font-style: normal;
+	font-weight:normal;
+}
+
+#searchResultsBox description._1{
+	background-color:#efefef;
+}
+#searchResultsBox description._0{
+	background-color:#fff;
+}
+ #orderBox{
+	margin-right:5px;
+	padding:3px;
+}
+#sortBox{
+	
+	padding:3px;
+}
+#sortBox label, #orderBox label{
+	padding:2px 5px;
+	margin:0;
+	border:1px solid #828B8B;
+	height:18px;
+	background: url('chrome://gdocsbar/skin/images/tab.png');
+}
+#orderBox label{
+	width:18px;
+}
+#sortBox > label:first-child, #orderBox > label:first-child{
+	/*border:1px solid #ccc;
+	-moz-border-radius-bottomleft:4px;
+	-moz-border-radius-topleft:4px;*/
+	background-position: top left;
+	
+	border-width:0px;
+}
+#sortBox > label:last-child, #orderBox > label:last-child{
+	border-width:0px;
+	background-position: top right;
+}
+#sortBox > label{
+	background-position: top center;
+	border-width:0 1px;
+	
+	
+}
+#sortBox label.on{
+	/*background-color:#A2CBF3;
+	-moz-border-radius:8px;*/
+	/*background: url('chrome://gdocsbar/skin/images/tab-off.png');*/
+}
+#sortBox > label.on, #orderBox > label.on{
+	background-position: bottom center;
+	border-width:0 1px;
+	color:#fff;
+}
+#sortBox label.off, #orderBox label.off{
+	cursor:pointer;	
+	color:#555;
+}
+
+#sortBox > label.on:first-child{
+	/*border:1px solid #ccc;
+	-moz-border-radius-bottomleft:4px;
+	-moz-border-radius-topleft:4px;*/
+	background-position: bottom left;
+	
+	border-width:0px;
+}
+#orderBox > label.on:first-child{
+	/*border:1px solid #ccc;
+	-moz-border-radius-bottomleft:4px;
+	-moz-border-radius-topleft:4px;*/
+	background-position: bottom left;
+	
+	border-width:0 1px 0 0;
+}
+#sortBox > label.on:last-child{
+	border-width:0px;
+	background-position: bottom right;
+}
+
+#orderBox > label.on:last-child{
+	border-width:0 0 0 1px;
+	background-position: bottom right;
+}
+
+
+#controlsBox{
+/*	
+	
+	border-top:1px solid #ccc;*/
+	margin:0 0 0 0;
+	background-color:#93C2F1;
+	border-bottom:1px solid #ccc;
+	padding:5px 0;
+}
+#starBox{
+	padding:3px;
+	
+}
+
+#starB.off{
+	-moz-opacity:0.4;
+}
+#starB.on{
+	-moz-opacity:1;
+}
+#starB{
+	height:16px;
+	cursor:pointer;
+}
+#controlsBox2{
+	padding:2px 5px;
+}
+#infoBox, #folderBox{
+	background-image:url('chrome://gdocsbar/skin/images/statusbg.png');
+}
+#infoBox label{
+	color:#333;
+}
+#userBox{
+	/*background-image: url('chrome://gdocsbar/skin/images/topbar-bg.png');*/
+	background-color:#333;
+	padding:0;
+	margin:0;
+	color:#fff;
+	height:20px;
+}
+
+#searchOptions{
+	width:170px;
+	/*margin-top:5px;*/
+	margin-bottom:5px;
+}
+#searchOptions box label{
+}
+#searchOptions box{
+	padding:3px;
+	background-color:#efefef;
+}
+#searchOptions box.off, #searchOptions box.off label{
+	cursor:pointer;
+}
+#searchOptions box.on#_filter{
+	-moz-border-radius-topright:5px;
+	background-color:#FFF;
+	border-right:1px solid #ccc;
+	border-top:1px solid #ccc;
+}
+#searchOptions box.on#_content{
+	-moz-border-radius-topleft:5px;
+	background-color:#FFF;
+	border-left:1px solid #ccc;
+	border-top:1px solid #ccc;
+}
+#searchOptions box.off#_filter{
+	background-color:#efefef;
+	border-bottom:1px solid #ccc;
+	border-top:1px solid #ccc;
+	
+}
+#searchOptions box.off#_content{
+	background-color:#efefef;
+	border-bottom:1px solid #ccc;
+	border-top:1px solid #ccc;
+	
+}
+/*
+#searchOptions label{
+	padding:1px 5px 7px 5px;
+	margin:0;
+	color:#ccc;
+}
+#_filter.on, #_content.on{
+	background: url('chrome://gdocsbar/skin/images/search-options.png') bottom center;
+	color:#000;
+}
+#_filter.off, #_content.off{
+	
+}
+*/
+#QTab box{
+	background-color:#efefef;
+	padding:3px;
+	margin:0;
+	border-top:1px solid #fff;
+	border-bottom:1px solid #ccc;
+}
+#QTab box image{
+	cursor:pointer;
+}
+#QTab box label{
+	margin-top:3px;
+}
+#uploadTab, #QTab, #finishedTab{
+	padding:5px 0 0 0;
+	margin:0px;
+	/*background:#93C2F1 url('chrome://gdocsbar/skin/images/upload.png') no-repeat bottom right;*/
+}
+#upload_txt{
+	background-color:#BDFCBE;
+	margin:0;
+	padding:5px 5px 5px 20px;
+	border-top:1px solid #fff;
+	font-weight:bold; 
+	background: #BDFCBE url('chrome://gdocsbar/skin/images/uploading.gif') no-repeat center left;
+	
+}
+#uploadDrop{
+	
+}
+#error_text{
+font-weight: bold; color:red; padding:0px; cursor:pointer; margin:0px;
+}
+#finishedTab vbox{
+	background-color:#efefef;
+	padding:3px;
+	margin:0;
+	border-top:1px solid #fff;
+	border-bottom:1px solid #ccc;
+}
+#finishedTab vbox description{
+	font-weight:bold;
+	padding-left: 25px;
+	color:red;
+}
+#finishedTab vbox label{
+	padding-left: 25px;
+	height:20px;
+}
+#finishedTab vbox label.success{
+	background: url('chrome://gdocsbar/skin/images/success.png') no-repeat center left;
+}
+#finishedTab vbox label.error{
+	background: url('chrome://gdocsbar/skin/images/error.png') no-repeat center left;
+}
+
+#backPage{
+	font-size:10px;
+	padding:2px 5px;
+	-moz-border-radius:5px;
+	border:1px solid #CCC;
+	background-color: #CCC;
+	font-weight:bold;
+	cursor:pointer;
+	margin:10px;
+}
+#backPage:hover{
+	background-color: #333;
+	color:#FFF;
+	border:1px solid #333;
+}
+#backPage:active{
+	background-color: #000;
+	color:#FFF;
+	border:1px solid #000;
+}

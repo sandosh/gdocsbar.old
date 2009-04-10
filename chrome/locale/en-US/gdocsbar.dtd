@@ -1,0 +1,12 @@
+<!ENTITY gdocsbar.title "Google Docs Bar">
+<!ENTITY openGdocsbar.commandkey "Y">
+<!ENTITY openGdocsbar.modifierskey "shift accel">
+<!ENTITY gdocsbar.logout "Logout">
+<!ENTITY gdocsbar.filterlabel  "filter">
+<!ENTITY gdocsbar.searchlabel "search by...">
+<!ENTITY gdocsbar.alltypeslabel "All types">
+<!ENTITY gdocsbar.sorttitle "title">
+<!ENTITY gdocsbar.date "date">
+<!ENTITY gdocsbar.author "author">
+<!ENTITY gdocsbar.upload "Upload">
+<!ENTITY gdocsbar.completed "Completed">

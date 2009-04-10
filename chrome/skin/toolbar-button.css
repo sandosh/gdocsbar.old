@@ -1,0 +1,52 @@
+sidebarheader > .tabs-closebutton.meeboMinimizeButton > .toolbarbutton-text {
+	display: -moz-box;
+	color: #999;
+}
+sidebarheader > .tabs-closebutton.meeboMinimizeButton:hover > .toolbarbutton-text {
+	color: #666;
+}
+
+#gdocsbar-button {
+	list-style-image: url(chrome://gdocsbar/skin/toolbar-icon-large.png);
+	-moz-image-region: rect(0, 24px, 24px, 0);
+}
+
+#gdocsbar-button:hover {
+	-moz-image-region: rect(24px, 24px, 48px, 0);
+}
+#gdocsbar-button:active {
+	-moz-image-region: rect(96px, 24px, 120px, 0);
+}
+
+#gdocsbar-button[showing="true"] {
+	-moz-image-region: rect(0, 48px, 24px, 24px);
+}
+#gdocsbar-button[showing="true"]:hover {
+	-moz-image-region: rect(24px, 48px, 48px, 24px);
+}
+#gdocsbar-button[showing="true"]:active {
+	-moz-image-region: rect(96px, 48px, 120px, 24px);
+}
+
+
+toolbar[iconsize="small"] #gdocsbar-button {
+	list-style-image: url(chrome://gdocsbar/skin/toolbar-icon-small.png);
+	-moz-image-region: rect(0, 16px, 16px, 0);
+}
+
+toolbar[iconsize="small"] #gdocsbar-button:hover {
+	-moz-image-region: rect(16px, 16px, 32px, 0);
+}
+toolbar[iconsize="small"] #gdocsbar-button:active {
+	-moz-image-region: rect(64px, 16px, 80px, 0);
+}
+
+toolbar[iconsize="small"] #gdocsbar-button[showing="true"] {
+	-moz-image-region: rect(0, 32px, 16px, 16px);
+}
+toolbar[iconsize="small"] #gdocsbar-button[showing="true"]:hover {
+	-moz-image-region: rect(16px, 32px, 32px, 16px);
+}
+toolbar[iconsize="small"] #gdocsbar-button[showing="true"]:active {
+	-moz-image-region: rect(64px, 32px, 80px, 16px);
+}

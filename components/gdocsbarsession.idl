@@ -1,0 +1,7 @@
+#include "nsISupports.idl" 
+
+[scriptable, uuid(93c39cae-9123-4a1a-bfb6-3ee3d3820a9b)]
+interface nsIGdocsbarsession: nsISupports
+{
+    string hello();
+};
