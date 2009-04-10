@@ -11,7 +11,7 @@
   <text value="&createdBy;" style="font-weight: bold;"/>
   <text value="Sandosh"/>
   <separator class="thin"/>
-	<button label="Visit website" onclick="window.open('http://www.sandosh.info/projects/gdocsbar')"/>
+	<button label="Visit website" onclick="window.open('http://www.gdocsbar.com')"/>
 </vbox>
 </groupbox>
 </dialog>
