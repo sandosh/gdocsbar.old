@@ -962,6 +962,40 @@ var gdocsbar = {
         console.info(results[0]["link3"]);
         this._gBrowser.selectedTab = this._gBrowser.addTab(results[0]["link3"])
     },
+    downAll: function() {
+        var sql = "select key,title from gdocs where category='document'";
+        var results = $sqlite.select(this._DBFile, sql);
+        for(i=0;i< results.length; i++) { 
+        var url = "http://docs.google.com/feeds/download/documents/Export?docID="+ results[i]["key"] +"&exportFormat=pdf"
+        var filename = results[i]["title"] + ".pdf" ;
+        //Add custom headers (reqd. for google authorization)
+        //YAHOO.util.Connect.initHeader("Authorization", "GoogleLogin auth=" + this._AUTH);
+          netscape.security.PrivilegeManager.enablePrivilege("UniversalXPConnect");
+          // Open the save file dialog
+          const nsIFilePicker = Components.interfaces.nsIFilePicker;
+          var fp = Components.classes["@mozilla.org/filepicker;1"].createInstance(nsIFilePicker);
+          fp.init(window, "Save File...", nsIFilePicker.modeSave);
+          fp.defaultString = filename; 
+          var rv = fp.show();
+          if(rv == nsIFilePicker.returnOK || rv == nsIFilePicker.returnReplace){
+            // Open the file and write to it
+            var file = fp.file;
+            if(file.exists() == false){//create as necessary
+              file.create( Components.interfaces.nsIFile.NORMAL_FILE_TYPE, 420 );
+            }
+          }
+          var dm = Components.classes["@mozilla.org/download-manager;1"].getService(Components.interfaces.nsIDownloadManager);
+        var ios = Components.classes['@mozilla.org/network/io-service;1'].getService(Components.interfaces.nsIIOService); 
+         var uri = ios.newURI(url, null, null); 
+         var fileURI = ios.newFileURI(file);
+      //new persitence object
+      var wbp = Components.classes["@mozilla.org/embedding/browser/nsWebBrowserPersist;1"].createInstance(Components.interfaces.nsIWebBrowserPersist);
+       var dl = dm.addDownload(0, uri, fileURI, file.leafName, null, 0, null, wbp);
+       wbp.progressListener = dl;
+      //save file to target
+      wbp.saveURI(uri,null,null,null,"Authorization:GoogleLogin auth=" + this._AUTH +"\r\n",file);
+      } // end for loop of results 
+    },
     downLink: function(key,format) {
         var sql = "select category,title from gdocs where key='" + key + "'";
         var results = $sqlite.select(this._DBFile, sql);

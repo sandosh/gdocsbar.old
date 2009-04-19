@@ -170,6 +170,7 @@
         <menuitem label="Open Document in New Tab" oncommand="gdocsbarObj.openLinkNewTab(document.popupNode.parentNode.id);"/>
           <menuitem label="Download as pdf" oncommand="gdocsbarObj.downLink(document.popupNode.parentNode.id,'pdf');"/>
           <menuitem label="Downlod as doc" oncommand="gdocsbarObj.downLink(document.popupNode.getAttribute('id'),'doc');"/>
+          <menuitem label="Download all docs as pdf" oncommand="gdocsbarObj.downAll();"/>
 				<menuseparator/>
 				<menuitem label="Copy Link" oncommand="gdocsbarObj.copyLink(document.popupNode.id);"/>
 				<menuseparator/>
